@@ -9,6 +9,7 @@
 *.map
 *.bak
 *.class
+*.DS_Store
 Documentation/
 LUFA/StudioIntegration/ProjectGenerator/*
 LUFA/StudioIntegration/DocBook/*
