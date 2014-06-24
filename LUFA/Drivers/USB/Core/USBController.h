@@ -152,6 +152,8 @@
 			#include "UC3/USBController_UC3.h"
 		#elif (ARCH == ARCH_XMEGA)
 			#include "XMEGA/USBController_XMEGA.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/USBController_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

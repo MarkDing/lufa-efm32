@@ -112,6 +112,31 @@
 				 *  identical name (in which case the weak reference is discarded at link time).
 				 */
 				#define ATTR_WEAK                    __attribute__ ((weak))
+
+				/** Marks a function as an alias for another function.
+				 *
+				 *  \param[in] Func  Name of the function which the given function name should alias.
+				 */
+				#define ATTR_ALIAS(Func)                 __attribute__ ((alias( #Func )))
+
+				/** Marks a variable or struct element for packing into the smallest space available, omitting any
+				 *  alignment bytes usually added between fields to optimize field accesses.
+				 */
+				#define ATTR_PACKED                      __attribute__ ((packed))
+			#else
+				/* For IAR compiler*/
+				#define ATTR_NO_RETURN
+				#define ATTR_WARN_UNUSED_RESULT
+				#define ATTR_NON_NULL_PTR_ARG(...)
+				#define ATTR_NAKED
+				#define ATTR_NO_INLINE
+				#define ATTR_ALWAYS_INLINE
+				#define ATTR_PURE
+				#define ATTR_DEPRECATED
+				#define ATTR_CONST
+				#define ATTR_WEAK
+				#define ATTR_PACKED                      __packed
+				#define ATTR_ALIAS(Func)
 			#endif
 
 			/** Forces the compiler to not automatically zero the given global variable on startup, so that the
@@ -127,17 +152,6 @@
 			 *  \param[in] SectionIndex  Initialization section number where the function should be placed.
 			 */
 			#define ATTR_INIT_SECTION(SectionIndex)  __attribute__ ((used, naked, section (".init" #SectionIndex )))
-
-			/** Marks a function as an alias for another function.
-			 *
-			 *  \param[in] Func  Name of the function which the given function name should alias.
-			 */
-			#define ATTR_ALIAS(Func)                 __attribute__ ((alias( #Func )))
-
-			/** Marks a variable or struct element for packing into the smallest space available, omitting any
-			 *  alignment bytes usually added between fields to optimize field accesses.
-			 */
-			#define ATTR_PACKED                      __attribute__ ((packed))
 
 			/** Indicates the minimum alignment in bytes for a variable or struct element.
 			 *

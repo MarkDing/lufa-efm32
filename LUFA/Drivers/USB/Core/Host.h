@@ -126,6 +126,8 @@
 			#include "AVR8/Host_AVR8.h"
 		#elif (ARCH == ARCH_UC3)
 			#include "UC3/Host_UC3.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/Host_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

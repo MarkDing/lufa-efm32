@@ -203,6 +203,10 @@
 			#include "XMEGA/C3_XPLAINED/LEDs.h"
 		#elif (BOARD == BOARD_U2S)
 			#include "AVR8/U2S/LEDs.h"
+		#elif (BOARD == BOARD_STK3700)
+			#include "EFM32GG/STK3700/LEDs.h"
+		#elif (BOARD == BOARD_DK3750)
+			#include "EFM32GG/DK3750/LEDs.h"
 		#else
 			#include "Board/LEDs.h"
 		#endif

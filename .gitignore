@@ -11,5 +11,7 @@
 *.class
 *.DS_Store
 Documentation/
+GNU ARM 4.7.3 - Debug/
+GNU ARM 4.7.3 - Release/
 LUFA/StudioIntegration/ProjectGenerator/*
 LUFA/StudioIntegration/DocBook/*

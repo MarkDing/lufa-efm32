@@ -91,7 +91,7 @@
 			 *
 			 *  \param[in] String  String to initialize a USB String Descriptor structure with.
 			 */
-			#define USB_STRING_DESCRIPTOR(String)     { .Header = {.Size = sizeof(USB_Descriptor_Header_t) + (sizeof(String) - 2), .Type = DTYPE_String}, .UnicodeString = String }
+			#define USB_STRING_DESCRIPTOR_WC(String)     { .Header = {.Size = sizeof(USB_Descriptor_Header_t) + (sizeof(String) - 2), .Type = DTYPE_String}, .UnicodeString = String }
 
 			/** Convenience macro to easily create \ref USB_Descriptor_String_t instances from an array of characters.
 			 *
@@ -702,7 +702,7 @@
 			{
 				USB_Descriptor_Header_t Header; /**< Descriptor header, including type and size. */
 
-				#if (((ARCH == ARCH_AVR8) || (ARCH == ARCH_XMEGA)) && !defined(__DOXYGEN__))
+				#if (((ARCH == ARCH_AVR8) || (ARCH == ARCH_XMEGA) || (ARCH == ARCH_EFM32GG)) && !defined(__DOXYGEN__))
 				wchar_t  UnicodeString[];
 				#else
 				uint16_t UnicodeString[]; /**< String data, as unicode characters (alternatively,

@@ -234,11 +234,17 @@
 			/** Selects the U2S specific board drivers, including the Button and LEDs drivers. */
 			#define BOARD_U2S                  56
 
+			/** Selects the STK3700 specific board drivers, including Button, LEDs and UART drivers. */
+			#define BOARD_STK3700			   57
+
+			/** Selects the STK3750 specific board drivers, including Button, LEDs and UART drivers. */
+			#define BOARD_DK3750			   58
+
 			#if !defined(__DOXYGEN__)
-				#define BOARD_                 BOARD_NONE
+				#define BOARD_                 BOARD_DK3750
 
 				#if !defined(BOARD)
-					#define BOARD              BOARD_NONE
+					#define BOARD              BOARD_DK3750
 				#endif
 			#endif
 

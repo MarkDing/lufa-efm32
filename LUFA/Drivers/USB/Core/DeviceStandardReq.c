@@ -61,7 +61,10 @@ void USB_Device_ProcessControlRequest(void)
 	  *(RequestHeader++) = Endpoint_Read_8();
 	#endif
 
-	EVENT_USB_Device_ControlRequest();
+	printf("bRequest = 0x%x\n", USB_ControlRequest.bRequest);
+	/* If EVENT handled a setup packet just return*/
+	if(EVENT_USB_Device_ControlRequest())
+		return;
 
 	if (Endpoint_IsSETUPReceived())
 	{
@@ -111,15 +114,19 @@ void USB_Device_ProcessControlRequest(void)
 				break;
 
 			default:
+				printf("Unknow command handled!\n");
+				Endpoint_ClearSETUP();
 				break;
 		}
 	}
 
+#if 0
 	if (Endpoint_IsSETUPReceived())
 	{
 		Endpoint_ClearSETUP();
 		Endpoint_StallTransaction();
 	}
+#endif
 }
 
 static void USB_Device_SetAddress(void)
@@ -131,8 +138,6 @@ static void USB_Device_SetAddress(void)
 	Endpoint_ClearSETUP();
 
 	Endpoint_ClearStatusStage();
-
-	while (!(Endpoint_IsINReady()));
 
 	USB_Device_EnableDeviceAddress(DeviceAddress);
 
@@ -253,7 +258,7 @@ static void USB_Device_GetDescriptor(void)
 		return;
 	}
 	#endif
-
+	printf("wValue = 0x%x\n", USB_ControlRequest.wValue);
 	if ((DescriptorSize = CALLBACK_USB_GetDescriptor(USB_ControlRequest.wValue, USB_ControlRequest.wIndex,
 	                                                 &DescriptorPointer
 	#if defined(ARCH_HAS_MULTI_ADDRESS_SPACE) && \

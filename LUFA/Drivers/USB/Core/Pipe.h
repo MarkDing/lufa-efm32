@@ -131,6 +131,8 @@
 			#include "AVR8/Pipe_AVR8.h"
 		#elif (ARCH == ARCH_UC3)
 			#include "UC3/Pipe_UC3.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/Pipe_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

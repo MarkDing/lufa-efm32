@@ -87,6 +87,8 @@
 			#include "AVR8/PipeStream_AVR8.h"
 		#elif (ARCH == ARCH_UC3)
 			#include "UC3/PipeStream_UC3.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/PipeStream_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

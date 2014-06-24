@@ -68,6 +68,9 @@
 	/* Includes: */
 		#include "../../../Common/Common.h"
 
+	#define __EFM32GG__
+	#define USB_DEVICE_ONLY
+
 	/* Public Interface - May be used in end-application: */
 	#if defined(__DOXYGEN__)
 		/** Indicates that the target AVR microcontroller belongs to the Series 2 AVR8 USB controller
@@ -244,6 +247,8 @@
 				#define USB_CAN_BE_DEVICE
 			#elif (defined(__AVR_ATxmega16C4__) || defined(__AVR_ATxmega32C4__))
 				#define USB_SERIES_C4_XMEGA
+				#define USB_CAN_BE_DEVICE
+			#elif (defined(__EFM32GG__))
 				#define USB_CAN_BE_DEVICE
 			#endif
 

@@ -117,6 +117,8 @@
 			#include "UC3/Endpoint_UC3.h"
 		#elif (ARCH == ARCH_XMEGA)
 			#include "XMEGA/Endpoint_XMEGA.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/Endpoint_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

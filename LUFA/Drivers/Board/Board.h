@@ -153,6 +153,10 @@
 			#include "XMEGA/C3_XPLAINED/Board.h"
 		#elif (BOARD == BOARD_U2S)
 			#include "AVR8/U2S/Board.h"
+		#elif (BOARD == BOARD_STK3700)
+			#include "EFM32GG/STK3700/Board.h"
+		#elif (BOARD == BOARD_DK3750)
+			#include "EFM32GG/DK3750/Board.h"
 		#else
 			#include "Board/Board.h"
 		#endif

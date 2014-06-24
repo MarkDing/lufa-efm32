@@ -76,7 +76,7 @@
 				 *  This can be used before ordering-critical operations, to ensure that the compiler does not re-order the resulting
 				 *  assembly output in an unexpected manner on sections of code that are ordering-specific.
 				 */
-				#define GCC_MEMORY_BARRIER()                  __asm__ __volatile__("" ::: "memory");
+				#define GCC_MEMORY_BARRIER()              // TODO    __asm__ __volatile__("" ::: "memory");
 
 				/** Determines if the specified value can be determined at compile-time to be a constant value when compiling under GCC.
 				 *

@@ -67,14 +67,17 @@
 			/** Selects the Atmel 32-bit UC3 AVR (AT32UC3* chips) architecture. */
 			#define ARCH_UC3            1
 
-			/** Selects the Atmel XMEGA AVR (ATXMEGA* chips) architecture. */
-			#define ARCH_XMEGA          2
+		    /** Selects the Atmel XMEGA AVR (ATXMEGA* chips) architecture. */
+		  #define ARCH_XMEGA          2
+
+			/** Selects the Silabs EFM32GG (Giant Gecko chips) architecture. */
+			#define ARCH_EFM32GG        3
 
 			#if !defined(__DOXYGEN__)
-				#define ARCH_           ARCH_AVR8
+				#define ARCH_           ARCH_EFM32GG
 
 				#if !defined(ARCH)
-					#define ARCH        ARCH_AVR8
+					#define ARCH        ARCH_EFM32GG
 				#endif
 			#endif
 

@@ -100,7 +100,7 @@ void EVENT_USB_Device_ConfigurationChanged(void)
 }
 
 /** Event handler for the library USB Control Request reception event. */
-void EVENT_USB_Device_ControlRequest(void)
+bool EVENT_USB_Device_ControlRequest(void)
 {
 
 }

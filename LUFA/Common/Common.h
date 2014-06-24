@@ -74,6 +74,7 @@
 		#include "CompilerSpecific.h"
 		#include "Attributes.h"
 
+		#define USE_LUFA_CONFIG_HEADER
 		#if defined(USE_LUFA_CONFIG_HEADER)
 			#include "LUFAConfig.h"
 		#endif
@@ -139,7 +140,31 @@
 			#define ARCH_LITTLE_ENDIAN
 
 			#include "Endianness.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "em_device.h"
+			#include "em_chip.h"
+			#include "bsp.h"
+			#include "em_usbtypes.h"
+			#include "em_usb.h"
+			#include "em_usbhal.h"
+			#include "em_usbd.h"
+			#include "em_cmu.h"
+			#include "em_gpio.h"
+			#include "em_int.h"
+			typedef uint32_t uint_reg_t;
+			extern volatile uint32_t msTicks;
+			#define MCU  EFM32GG990
+			#define F_CPU 48000000
+			#define F_USB 48000000
+			#define USE_LUFA_CONFIG_HEADER
+			#define ARCH_LITTLE_ENDIAN
+			#define PROGMEM                  const
+			#define pgm_read_byte(x)         (*x)
+			#define memcmp_P(...)            memcmp(__VA_ARGS__)
+			#define memcpy_P(...)            memcpy(__VA_ARGS__)
+			#include "Endianness.h"
 		#else
+
 			#error Unknown device architecture specified.
 		#endif
 
@@ -298,6 +323,13 @@
 					while (Milliseconds--)
 					  _delay_ms(1);
 				}
+				#elif (ARCH == ARCH_EFM32GG)
+				{
+					uint32_t  msTicks_last = msTicks + Milliseconds;
+
+					while(msTicks_last > msTicks);
+				}
+
 				#endif
 			}
 
@@ -320,6 +352,8 @@
 				return __builtin_mfsr(AVR32_SR);
 				#elif (ARCH == ARCH_XMEGA)
 				return SREG;
+				#elif (ARCH == ARCH_EFM32GG)
+				return __get_BASEPRI();
 				#endif
 			}
 
@@ -345,6 +379,8 @@
 				  __builtin_csrf(AVR32_SR_GM_OFFSET);
 				#elif (ARCH == ARCH_XMEGA)
 				SREG = GlobalIntState;
+				#elif (ARCH == ARCH_EFM32GG)
+				//__set_PRIMASK(GlobalIntState);
 				#endif
 
 				GCC_MEMORY_BARRIER();
@@ -365,6 +401,8 @@
 				__builtin_csrf(AVR32_SR_GM_OFFSET);
 				#elif (ARCH == ARCH_XMEGA)
 				sei();
+				#elif (ARCH == ARCH_EFM32GG)
+				// __enable_irq();
 				#endif
 
 				GCC_MEMORY_BARRIER();
@@ -385,6 +423,8 @@
 				__builtin_ssrf(AVR32_SR_GM_OFFSET);
 				#elif (ARCH == ARCH_XMEGA)
 				cli();
+				#elif (ARCH == ARCH_EFM32GG)
+				// __disable_irq();
 				#endif
 
 				GCC_MEMORY_BARRIER();

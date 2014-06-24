@@ -111,6 +111,8 @@
 			#include "UC3/EndpointStream_UC3.h"
 		#elif (ARCH == ARCH_XMEGA)
 			#include "XMEGA/EndpointStream_XMEGA.h"
+		#elif (ARCH == ARCH_EFM32GG)
+			#include "EFM32GG/EndpointStream_EFM32GG.h"
 		#endif
 
 	/* Disable C linkage for C++ Compilers: */

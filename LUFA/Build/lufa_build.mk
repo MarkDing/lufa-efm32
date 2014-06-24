@@ -130,6 +130,8 @@ else ifeq ($(ARCH), XMEGA)
 else ifeq ($(ARCH), UC3)
    CROSS        := avr32
    $(warning The UC3 device support is currently EXPERIMENTAL (incomplete and/or non-functional), and is included for preview purposes only.)
+else ifeq ($(ARCH), EFM32GG)
+   CROSS        := gcc
 else
    $(error Unsupported architecture "$(ARCH)")
 endif
@@ -186,6 +188,8 @@ else ifeq ($(ARCH), XMEGA)
    BASE_CC_FLAGS += -mmcu=$(MCU) -fshort-enums -fno-inline-small-functions -fpack-struct
 else ifeq ($(ARCH), UC3)
    BASE_CC_FLAGS += -mpart=$(MCU:at32%=%) -masm-addr-pseudos
+else ifeq ($(ARCH), EFM32GG)
+   BASE_CC_FLAGS += -mmcu=$(MCU) -fshort-enums -fno-inline-small-functions -fpack-struct
 endif
 BASE_CC_FLAGS += -Wall -fno-strict-aliasing -funsigned-char -funsigned-bitfields -ffunction-sections
 BASE_CC_FLAGS += -I. -I$(patsubst %/,%,$(LUFA_PATH))/..
@@ -212,6 +216,8 @@ ifeq ($(ARCH), AVR8)
 else ifeq ($(ARCH), XMEGA)
    BASE_LD_FLAGS += -mmcu=$(MCU)
 else ifeq ($(ARCH), UC3)
+   BASE_LD_FLAGS += -mpart=$(MCU:at32%=%) --rodata-writable --direct-data
+else ifeq ($(ARCH), EFM32GG)
    BASE_LD_FLAGS += -mpart=$(MCU:at32%=%) --rodata-writable --direct-data
 endif
 

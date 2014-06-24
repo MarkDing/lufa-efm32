@@ -85,6 +85,9 @@ else ifeq ($(ARCH), XMEGA)
 else ifeq ($(ARCH), UC3)
    ATPROGRAM_FLASH_FLAGS  := --erase
    ATPROGRAM_EEPROM_FLAGS := --eeprom
+else ifeq ($(ARCH), EFM32GG)
+   ATPROGRAM_FLASH_FLAGS  := --erase
+   ATPROGRAM_EEPROM_FLAGS := --eeprom
 else
    $(error Unsupported architecture "$(ARCH)")
 endif
