@@ -1,37 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Lufa-efm32 : LUFA port to Silabs EFM32 platform" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Lufa-efm32</title>
+  <meta name="description" content="LUFA port to Silabs EFM32 platform">
 
-    <title>Lufa-efm32</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/MarkDing/lufa-efm32">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Lufa-efm32</h1>
-          <h2 id="project_tagline">LUFA port to Silabs EFM32 platform</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/MarkDing/lufa-efm32/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/MarkDing/lufa-efm32/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Lufa-efm32</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">LUFA port to Silabs EFM32 platform</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/MarkDing/lufa-efm32/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/MarkDing/lufa-efm32/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/MarkDing/lufa-efm32" class="code">View Lufa-efm32 on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
 <a name="implementing-usb-communication-device-class-cdc-on-efm32gg-mcus" class="anchor" href="#implementing-usb-communication-device-class-cdc-on-efm32gg-mcus"><span class="octicon octicon-link"></span></a>Implementing USB communication device class (CDC) on EFM32GG MCUs</h1>
 
 <h2>
@@ -39,7 +44,7 @@
 
 <p>USB revolutionized the PC peripheral space by making a very simple plug-and-play interface for users. As a result, many modern computers no longer support RS-232 serial COM ports, opting for the slimmer USB alternative. This can be an issue for the developer who needs a COM port for communication between a peripheral and host PC. A subset of the USB Communication DeviceClass (CDC) can be used to emulate a serial port providing a virtual COM port UART interface. This allows developers to use legacy applications with new products using the same COM port interface as before, with few hardware and software modifications.</p>
 
-<p><img alt="USB CDC Intro" title="USB CDC Virtual COM POrt system"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png" alt="USB CDC Intro" title="USB CDC Virtual COM POrt system"></p>
 
 <p><strong>Figure 1 USB CDC Virtual COM Port System</strong></p>
 
@@ -394,7 +399,7 @@ communication status reporting. A state is considered enabled if its respective 
 </tbody>
 </table><p>Figure 2 shows a standard CDC communication flow.</p>
 
-<p><img alt="CDC USB LOG" title="CDC USB log"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png" alt="CDC USB LOG" title="CDC USB log"></p>
 
 <p><strong>Figure 2. USB CDC Communication FLow</strong></p>
 
@@ -406,7 +411,7 @@ More information about the <code>LUFA</code> project can be found on the officia
 
 <ul>
 <li>The USB CDC project contains a prebuilt LUFA USB stack documentation which locate at .\LUFA\Documentation\html. Double click on the index.html, the documentations shows in your default browser.</li>
-</ul><p><img alt="LUFA documentation" title="LUFA USB documentation"></p>
+</ul><p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png" alt="LUFA documentation" title="LUFA USB documentation"></p>
 
 <p><strong>Figure 3. USB LUFA Libary Documentation</strong></p>
 
@@ -422,7 +427,7 @@ More information about the <code>LUFA</code> project can be found on the officia
 
 <p>For STK3700 board, there is no UART socket on board. UART signals are connected to EXP Header. </p>
 
-<p><img alt="USART on EXP" title="USART signals on STK3700 Expansion Header"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png" alt="USART on EXP" title="USART signals on STK3700 Expansion Header"></p>
 
 <p><strong>Figure 4. USART signals on STK3700 Expansion Header</strong></p>
 
@@ -440,48 +445,55 @@ More information about the <code>LUFA</code> project can be found on the officia
 <li>Build the project and download firmware to the EFM32GG DK3750 board.</li>
 <li>Connect the USB cable between the Device MCU plugin board USB connector  and the PC.</li>
 <li>Open Device Manager. The device will appear under <strong>Other devices</strong> as the <strong>EFM32GG CDC Device</strong>.
-<img alt="Device Manager">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png" alt="Device Manager">
 </li>
 <li>Right-click on the <strong>EFM32GG CDC Device</strong> and select <strong>Update Driver Software</strong>.
-<img alt="Device Manager Update">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png" alt="Device Manager Update">
 </li>
 <li>Select <strong>Browse my computer for driver software</strong>.
-<img alt="Updata Driver Software">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/update_driver_software.png" alt="Updata Driver Software">
 </li>
 <li>Select <strong>Browse my computer for driver software</strong>.
-<img alt="Browse Driver Software">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/browse_driver_software.png" alt="Browse Driver Software">
 </li>
 <li>Windows will display a warning. Select <strong>Install this driversoftware anyway</strong>.
-<img alt="Windows Sercurity">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/windows_security.png" alt="Windows Sercurity">
 </li>
 <li>When the driver finishes installing,Windows will report the installation results.</li>
 <li>Open Device Manager and observethe device. It will now appear under <strong>Ports (COM &amp; LPT)</strong> with an assigned COM port number.
-<img alt="Device Manager Done">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_done.png" alt="Device Manager Done">
 </li>
 </ol><h2>
 <a name="contact-information" class="anchor" href="#contact-information"><span class="octicon octicon-link"></span></a>CONTACT INFORMATION</h2>
 
 <p><strong>Silicon Laboratories Inc.</strong> 
-400 West Cesar Chavez
-Austin, TX 78701
-Tel: 1+(512) 416-8500
-Fax: 1+(512) 416-9669
-Toll Free: 1+(877) 444-3032
-Please visit the Silicon Labs Technical Support web page:
-<a href="https://www.silabs.com/support/pages/contacttechnicalsupport.aspx">https://www.silabs.com/support/pages/contacttechnicalsupport.aspx</a>
-and register to submit a technical support request.</p>
-      </section>
+400 West Cesar Chavez<br>
+Austin, TX 78701<br>
+Tel: 1+(512) 416-8500<br>
+Fax: 1+(512) 416-9669<br>
+Toll Free: 1+(877) 444-3032<br>
+Please visit the Silicon Labs Technical Support web page:<br><a href="https://www.silabs.com/support/pages/contacttechnicalsupport.aspx">https://www.silabs.com/support/pages/contacttechnicalsupport.aspx</a><br>
+and register to submit a technical support request.<br></p>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/MarkDing" class="avatar"><img src="https://avatars3.githubusercontent.com/u/1233397?s=60" width="48" height="48"/></a> <a href="https://github.com/MarkDing">MarkDing</a> maintains <a href="https://github.com/MarkDing/lufa-efm32">Lufa-efm32</a></p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Lufa-efm32 maintained by <a href="https://github.com/MarkDing">MarkDing</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/MarkDing/lufa-efm32/tarball/master" class="tar">tar</a><a href="https://github.com/MarkDing/lufa-efm32/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
 
-  </body>
+  
+</body>
 </html>
