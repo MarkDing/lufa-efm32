@@ -1,4 +1,4 @@
-Implementing USB communication device class (CDC) on EFM32GG MCUs
+Implementing USB communication device class (CDC) on EFM32 MCUs
 ===========================
 ## 1. Introduction
 USB revolutionized the PC peripheral space by making a very simple plug-and-play interface for users. As a result, many modern computers no longer support RS-232 serial COM ports, opting for the slimmer USB alternative. This can be an issue for the developer who needs a COM port for communication between a peripheral and host PC. A subset of the USB Communication DeviceClass (CDC) can be used to emulate a serial port providing a virtual COM port UART interface. This allows developers to use legacy applications with new products using the same COM port interface as before, with few hardware and software modifications.
@@ -7,14 +7,14 @@ USB revolutionized the PC peripheral space by making a very simple plug-and-play
 
 __Figure 1 USB CDC Virtual COM Port System__
 
-This application note describes the USB communications device class driver (or USB CDC) in detail and includes an implementation example for the Silicon Labs EFM32 Giant Gecko MCU.
+This application note describes the USB communications device class driver (or USB CDC) in detail and includes an implementation example for the Silicon Labs EFM32 MCU.
 
 ### 1.1. Assumptions
 This document assumes the following:
 
 * A working knowledge of the C programming language.
 * Familiarity with the USB 2.0 specification and terms and abbreviations defined by the USB specification.
-* Familiarity with Silicon Labs EFM32GG development environment.
+* Familiarity with Silicon Labs EFM32 development environment.
 
 ### 1.2. Features and Limitations
 The CDC firmware implemented with this application note includes the following features:
@@ -34,7 +34,7 @@ The example does not implement the following:
 
 
 ## 2. Relevant Documentation
-EFM32 Giant Gecko Application Notes are listed on the following website: www.silabs.com/32bit-appnotes.
+EFM32 Application Notes are listed on the following website: www.silabs.com/32bit-appnotes.
 
 * __AN758 IMPLEMENTING USB COMMUNICATION DEVICE CLASS (CDC) ON SiM3U1XX MCUs__ -- provides an implementation example on porting LUFA USB CDC on SiM3U1xx MCUs.
 * __AN0822 SIMPLICITY STUDIO USER’S GUIDE__ -- provides a description of the Simplicity Studio IDE features and environment.
@@ -138,7 +138,7 @@ __Table 5. UART State Bitmap__
 ### 3.3. Endpoint Configuration
 Table 6 illustrates the endpoint configuration for the Abstract Control Model.
 
-__Table 6. UART State Bitmap__
+__Table 6. USB Endpoint Configuration__
 
 | Endpoint | Direction | Type | Max Packet Size | Description |
 | ----- | ----- | ----- | ----- | ----- |
@@ -163,7 +163,7 @@ More information about the `LUFA` project can be found on the official website: 
 
 __Figure 3. USB LUFA Libary Documentation__
 
-* This implementation support two boards of EFM32GG, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. 
+* This implementation support two boards of EFM32, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. 
 
 ``` c
 #if !defined(__DOXYGEN__)
@@ -186,11 +186,11 @@ The CDC class is implemented in all releases of Windows, and the operatingsystem
 ### Installing the Driver
 To install the driver on Windows 7:
 
-1. Build the project and download firmware to the EFM32GG DK3750 board.
+1. Build the project and download firmware to the EFM32 DK3750 board.
 2. Connect the USB cable between the Device MCU plugin board USB connector  and the PC.
-3. Open Device Manager. The device will appear under __Other devices__ as the __EFM32GG CDC Device__.
+3. Open Device Manager. The device will appear under __Other devices__ as the __EFM32 CDC Device__.
 ![Device Manager][Device_Manager]
-4. Right-click on the __EFM32GG CDC Device__ and select __Update Driver Software__.
+4. Right-click on the __EFM32 CDC Device__ and select __Update Driver Software__.
 ![Device Manager Update][Device_Manager_Update]
 5. Select __Browse my computer for driver software__.
 ![Updata Driver Software][Updata_Driver_Software]
@@ -217,7 +217,7 @@ and register to submit a technical support request.<br>
 
 
 
-[USB_CDC_Intro]:https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png "USB CDC Virtual COM POrt system"
+[USB_CDC_Intro]:https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png "USB CDC Virtual COM Port system"
 [CDC_USB_LOG]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png "CDC USB log"
 [LUFA_DOC]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png "LUFA USB documentation"
 [USART_ON_EXP]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png "USART signals on STK3700 Expansion Header"

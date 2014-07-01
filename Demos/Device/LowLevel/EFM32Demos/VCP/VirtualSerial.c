@@ -117,8 +117,8 @@ int main(void)
 
 	LEDs_SetAllLEDs(LEDMASK_USB_NOTREADY);
 	for (;;) {
-		// VCOM_Echo();
-		VCOM_Bridge();
+		VCOM_Echo();
+		// VCOM_Bridge();
 	}
 }
 
