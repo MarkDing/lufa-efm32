@@ -173,30 +173,62 @@ const USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor = {
 	}
 };
 
-/** Language descriptor structure. This descriptor, located in FLASH memory, is returned when the host requests
- *  the string descriptor with index 0 (the first index). It is actually an array of 16-bit integers, which indicate
- *  via the language ID table available at USB.org what languages the device supports for its string descriptors.
- */
-const USB_Descriptor_String_t PROGMEM LanguageString = USB_STRING_DESCRIPTOR_ARRAY(LANGUAGE_ID_ENG);
+#define STR0LEN 4
+static uint8_t const String0Desc[STR0LEN] = {
+	STR0LEN, DTYPE_String, 0x09, 0x04
+}; //end of String0Desc
 
-/** Manufacturer descriptor string. This is a Unicode string containing the manufacturer's details in human readable
- *  form, and is read out upon request by the host when the appropriate string ID is requested, listed in the Device
- *  Descriptor.
- */
-const USB_Descriptor_String_t PROGMEM ManufacturerString = USB_STRING_DESCRIPTOR_WC(L"Silicon Laboratories Inc.");
+#define STR1LEN sizeof("Silicon Laboratories Inc.")*2
+static uint8_t const String1Desc[STR1LEN] = {
+	STR1LEN, DTYPE_String,
+	'S', 0,
+	'i', 0,
+	'l', 0,
+	'i', 0,
+	'c', 0,
+	'o', 0,
+	'n', 0,
+	' ', 0,
+	'L', 0,
+	'a', 0,
+	'b', 0,
+	'o', 0,
+	'r', 0,
+	'a', 0,
+	't', 0,
+	'o', 0,
+	'r', 0,
+	'i', 0,
+	'e', 0,
+	's', 0,
+	' ', 0,
+	'I', 0,
+	'n', 0,
+	'c', 0,
+	'.', 0
+}; //end of String1Desc
 
-/** Product descriptor string. This is a Unicode string containing the product's details in human readable form,
- *  and is read out upon request by the host when the appropriate string ID is requested, listed in the Device
- *  Descriptor.
- */
-const USB_Descriptor_String_t PROGMEM ProductString = USB_STRING_DESCRIPTOR_WC(L"EFM32GG CDC Device");
+#define STR2LEN sizeof("EFM32 CDC Device")*2
+static uint8_t const String2Desc[STR2LEN] = {
+	STR2LEN, DTYPE_String,
+	'E', 0,
+	'F', 0,
+	'M', 0,
+	'3', 0,
+	'2', 0,
+	' ', 0,
+	'C', 0,
+	'D', 0,
+	'C', 0,
+	' ', 0,
+	'D', 0,
+	'e', 0,
+	'v', 0,
+	'i', 0,
+	'c', 0,
+	'e', 0
+}; //end of String2Desc
 
-/** This function is called by the library when in device mode, and must be overridden (see library "USB Descriptors"
- *  documentation) by the application code so that the address and size of a requested descriptor can be given
- *  to the USB library. When the device receives a Get Descriptor request on the control endpoint, this function
- *  is called so that the descriptor details can be passed back and the appropriate descriptor sent back to the
- *  USB host.
- */
 uint16_t CALLBACK_USB_GetDescriptor(const uint16_t wValue,
                                     const uint8_t wIndex,
                                     const void **const DescriptorAddress)
@@ -218,17 +250,17 @@ uint16_t CALLBACK_USB_GetDescriptor(const uint16_t wValue,
 		break;
 	case DTYPE_String:
 		switch (DescriptorNumber) {
-		case STRING_ID_Language:
-			Address = &LanguageString;
-			Size    = pgm_read_byte(&LanguageString.Header.Size);
+		case 0x00:
+			Address = String0Desc;
+			Size    = STR0LEN;
 			break;
-		case STRING_ID_Manufacturer:
-			Address = &ManufacturerString;
-			Size    = pgm_read_byte(&ManufacturerString.Header.Size);
+		case 0x01:
+			Address = String1Desc;
+			Size    = STR1LEN;
 			break;
-		case STRING_ID_Product:
-			Address = &ProductString;
-			Size    = pgm_read_byte(&ProductString.Header.Size);
+		case 0x02:
+			Address = String2Desc;
+			Size    = STR2LEN;
 			break;
 		}
 
@@ -238,4 +270,3 @@ uint16_t CALLBACK_USB_GetDescriptor(const uint16_t wValue,
 	*DescriptorAddress = Address;
 	return Size;
 }
-

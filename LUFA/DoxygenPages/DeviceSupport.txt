@@ -423,11 +423,11 @@
  */
 
 /**
- *  \page Page_EFM32GGSupport Silicon Labs 32-Bit Giant Gecko (EFM32GG)
+ *  \page Page_EFM32GGSupport Silicon Labs 32-Bit EFM32
  *
- *  \warning The Silicon Labs Giant Gecko device support is currently <b>experimental</b>, and is included for preview purposes only.
+ *  \warning The Silicon Labs EFM32 device support is currently <b>experimental</b>, and is included for preview purposes only.
  *
- *  \section Sec_EFM32GGSupport_Devices Supported Microcontroller Models
+ *  \section Sec_EFM32Support_Devices Supported Microcontroller Models
  *
  *  Currently supported EFM32GG models:
  *
@@ -445,13 +445,13 @@
 
  *  </table>
  *
- *  \section Sec_EFM32GGSupport_Boards Supported Silicon Labs Boards
+ *  \section Sec_EFM32Support_Boards Supported Silicon Labs Boards
  *
  *  Currently supported Silicon Labs Giant Gecko boards (see \ref Group_BoardTypes):
  *   - STK3700
  *   - DK3750
  *
- *  \section Sec_EFM32GGSupport_ThirdParty Supported Third Party Boards
+ *  \section Sec_EFM32Support_ThirdParty Supported Third Party Boards
  *
  *  Currently supported third-party boards (see \ref Group_BoardTypes for makefile \c BOARD constant names):
  *   - Custom User Boards (with Board Drivers if desired, see \ref Page_WritingBoardDrivers)
