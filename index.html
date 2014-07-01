@@ -32,18 +32,18 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="implementing-usb-communication-device-class-cdc-on-efm32gg-mcus" class="anchor" href="#implementing-usb-communication-device-class-cdc-on-efm32gg-mcus"><span class="octicon octicon-link"></span></a>Implementing USB communication device class (CDC) on EFM32GG MCUs</h1>
+<a name="implementing-usb-communication-device-class-cdc-on-efm32-mcus" class="anchor" href="#implementing-usb-communication-device-class-cdc-on-efm32-mcus"><span class="octicon octicon-link"></span></a>Implementing USB communication device class (CDC) on EFM32 MCUs</h1>
 
 <h2>
 <a name="1-introduction" class="anchor" href="#1-introduction"><span class="octicon octicon-link"></span></a>1. Introduction</h2>
 
 <p>USB revolutionized the PC peripheral space by making a very simple plug-and-play interface for users. As a result, many modern computers no longer support RS-232 serial COM ports, opting for the slimmer USB alternative. This can be an issue for the developer who needs a COM port for communication between a peripheral and host PC. A subset of the USB Communication DeviceClass (CDC) can be used to emulate a serial port providing a virtual COM port UART interface. This allows developers to use legacy applications with new products using the same COM port interface as before, with few hardware and software modifications.</p>
 
-<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png" alt="USB CDC Intro" title="USB CDC Virtual COM POrt system"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png" alt="USB CDC Intro" title="USB CDC Virtual COM Port system"></p>
 
 <p><strong>Figure 1 USB CDC Virtual COM Port System</strong></p>
 
-<p>This application note describes the USB communications device class driver (or USB CDC) in detail and includes an implementation example for the Silicon Labs EFM32 Giant Gecko MCU.</p>
+<p>This application note describes the USB communications device class driver (or USB CDC) in detail and includes an implementation example for the Silicon Labs EFM32 MCU.</p>
 
 <h3>
 <a name="11-assumptions" class="anchor" href="#11-assumptions"><span class="octicon octicon-link"></span></a>1.1. Assumptions</h3>
@@ -53,7 +53,7 @@
 <ul>
 <li>A working knowledge of the C programming language.</li>
 <li>Familiarity with the USB 2.0 specification and terms and abbreviations defined by the USB specification.</li>
-<li>Familiarity with Silicon Labs EFM32GG development environment.</li>
+<li>Familiarity with Silicon Labs EFM32 development environment.</li>
 </ul><h3>
 <a name="12-features-and-limitations" class="anchor" href="#12-features-and-limitations"><span class="octicon octicon-link"></span></a>1.2. Features and Limitations</h3>
 
@@ -75,7 +75,7 @@
 </ul><h2>
 <a name="2-relevant-documentation" class="anchor" href="#2-relevant-documentation"><span class="octicon octicon-link"></span></a>2. Relevant Documentation</h2>
 
-<p>EFM32 Giant Gecko Application Notes are listed on the following website: <a href="http://www.silabs.com/32bit-appnotes">www.silabs.com/32bit-appnotes</a>.</p>
+<p>EFM32 Application Notes are listed on the following website: <a href="http://www.silabs.com/32bit-appnotes">www.silabs.com/32bit-appnotes</a>.</p>
 
 <ul>
 <li>
@@ -352,7 +352,7 @@ communication status reporting. A state is considered enabled if its respective 
 
 <p>Table 6 illustrates the endpoint configuration for the Abstract Control Model.</p>
 
-<p><strong>Table 6. UART State Bitmap</strong></p>
+<p><strong>Table 6. USB Endpoint Configuration</strong></p>
 
 <table>
 <thead><tr>
@@ -411,7 +411,7 @@ More information about the <code>LUFA</code> project can be found on the officia
 <p><strong>Figure 3. USB LUFA Libary Documentation</strong></p>
 
 <ul>
-<li>This implementation support two boards of EFM32GG, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. </li>
+<li>This implementation support two boards of EFM32, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. </li>
 </ul><div class="highlight highlight-c"><pre><span class="cp">#if !defined(__DOXYGEN__)</span>
 <span class="cp">    #define BOARD_                 BOARD_DK3750</span>
 <span class="cp">    #if !defined(BOARD)</span>
@@ -437,12 +437,12 @@ More information about the <code>LUFA</code> project can be found on the officia
 <p>To install the driver on Windows 7:</p>
 
 <ol>
-<li>Build the project and download firmware to the EFM32GG DK3750 board.</li>
+<li>Build the project and download firmware to the EFM32 DK3750 board.</li>
 <li>Connect the USB cable between the Device MCU plugin board USB connector  and the PC.</li>
-<li>Open Device Manager. The device will appear under <strong>Other devices</strong> as the <strong>EFM32GG CDC Device</strong>.
+<li>Open Device Manager. The device will appear under <strong>Other devices</strong> as the <strong>EFM32 CDC Device</strong>.
 <img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png" alt="Device Manager">
 </li>
-<li>Right-click on the <strong>EFM32GG CDC Device</strong> and select <strong>Update Driver Software</strong>.
+<li>Right-click on the <strong>EFM32 CDC Device</strong> and select <strong>Update Driver Software</strong>.
 <img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png" alt="Device Manager Update">
 </li>
 <li>Select <strong>Browse my computer for driver software</strong>.
