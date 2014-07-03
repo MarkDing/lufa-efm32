@@ -57,7 +57,6 @@ extern "C" {
 /* Private Interface - For use in library only: */
 #if !defined(__DOXYGEN__)
 /* External Variables: */
-extern volatile uint32_t ep_selected;
 
 /* Enums: */
 enum USB_Interrupts_t {

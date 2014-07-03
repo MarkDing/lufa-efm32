@@ -245,6 +245,7 @@
 			};
 
 		/* Type Defines: */
+			EFM32_PACK_START(1)
 			/** \brief Standard USB Descriptor Header (LUFA naming conventions).
 			 *
              *  Type define for all descriptors' standard header, indicating the descriptor's length and type. This structure
@@ -752,7 +753,7 @@
 				                     *   of an explicit array of ASCII characters.
 				                     */
 			} ATTR_PACKED USB_StdDescriptor_String_t;
-
+			EFM32_PACK_END()
 
 	/* Disable C linkage for C++ Compilers: */
 		#if defined(__cplusplus)

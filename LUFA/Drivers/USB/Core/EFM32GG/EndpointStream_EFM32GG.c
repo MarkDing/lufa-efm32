@@ -45,7 +45,7 @@ uint8_t Endpoint_Discard_Stream(uint16_t Length,
 	uint8_t  ErrorCode;
 	uint16_t BytesInTransfer = 0;
 
-	if ((ErrorCode = Endpoint_WaitUntilReady()))
+	if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 		return ErrorCode;
 
 	if (BytesProcessed != NULL)
@@ -60,7 +60,7 @@ uint8_t Endpoint_Discard_Stream(uint16_t Length,
 				return ENDPOINT_RWSTREAM_IncompleteTransfer;
 			}
 
-			if ((ErrorCode = Endpoint_WaitUntilReady()))
+			if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 				return ErrorCode;
 		} else {
 			Endpoint_Discard_8();
@@ -79,7 +79,7 @@ uint8_t Endpoint_Null_Stream(uint16_t Length,
 	uint8_t  ErrorCode;
 	uint16_t BytesInTransfer = 0;
 
-	if ((ErrorCode = Endpoint_WaitUntilReady()))
+	if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 		return ErrorCode;
 
 	if (BytesProcessed != NULL)
@@ -94,7 +94,7 @@ uint8_t Endpoint_Null_Stream(uint16_t Length,
 				return ENDPOINT_RWSTREAM_IncompleteTransfer;
 			}
 
-			if ((ErrorCode = Endpoint_WaitUntilReady()))
+			if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 				return ErrorCode;
 		} else {
 			Endpoint_Write_8(0);

@@ -160,6 +160,7 @@
 			 *
 			 *  \see The USB 2.0 specification for more information on standard control requests.
 			 */
+			EFM32_PACK_START(1)
 			typedef struct
 			{
 				uint8_t  bmRequestType; /**< Type of the request. */
@@ -168,7 +169,7 @@
 				uint16_t wIndex; /**< wIndex parameter of the request. */
 				uint16_t wLength; /**< Length of the data to transfer in bytes. */
 			} ATTR_PACKED USB_Request_Header_t;
-
+			EFM32_PACK_END()
 		/* Enums: */
 			/** Enumeration for the various standard request commands. These commands are applicable when the
 			 *  request type is \ref REQTYPE_STANDARD (with the exception of \ref REQ_GetDescriptor, which is always

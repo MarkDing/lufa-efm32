@@ -134,7 +134,7 @@ static void Handle_USB_GINTSTS_IEPINT(void)
 	int epnum;
 	uint16_t epint;
 	uint16_t epmask;
-	uint32_t status;
+//	uint32_t status;
 	USBD_Ep_TypeDef *ep;
 
 
@@ -142,7 +142,8 @@ static void Handle_USB_GINTSTS_IEPINT(void)
 	for (epnum = 0, epmask = 1; epnum <= MAX_NUM_IN_EPS; epnum++, epmask <<= 1) {
 		if (epint & epmask) {
 			ep = &dev->ep[epnum];
-			status = USBDHAL_GetInEpInts(ep);
+			USBDHAL_GetInEpInts(ep);
+//			status = USBDHAL_GetInEpInts(ep);
 			// if (status & USB_DIEP_INT_XFERCOMPL) {
 			// 	USB_DINEPS[epnum].INT = USB_DIEP_INT_XFERCOMPL;
 			// 	if (epnum == 0) {

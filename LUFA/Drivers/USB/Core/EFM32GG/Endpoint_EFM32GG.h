@@ -97,8 +97,8 @@ extern "C" {
 void Endpoint_ClearEndpoints(void);
 
 /* External Variables: */
-extern volatile uint32_t ep_selected;
-extern volatile uint8_t *USB_Endpoint_FIFOPos[];
+extern uint32_t ep_selected;
+extern uint8_t *USB_Endpoint_FIFOPos[];
 extern USBD_Ep_TypeDef *ep;
 extern uint8_t receiveBuffer[];
 

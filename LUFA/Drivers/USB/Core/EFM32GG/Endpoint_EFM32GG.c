@@ -42,8 +42,8 @@
 uint8_t USB_Device_ControlEndpointSize = ENDPOINT_CONTROLEP_DEFAULT_SIZE;
 #endif
 
-volatile uint32_t ep_selected = ENDPOINT_CONTROLEP;
-volatile uint8_t *USB_Endpoint_FIFOPos[ENDPOINT_TOTAL_ENDPOINTS];
+uint32_t ep_selected = ENDPOINT_CONTROLEP;
+uint8_t *USB_Endpoint_FIFOPos[ENDPOINT_TOTAL_ENDPOINTS];
 
 #define BUFFERSIZE 500
 /* Buffer to receive incoming messages. Needs to be
@@ -100,7 +100,6 @@ void Endpoint_ClearEndpoints(void)
 
 void Endpoint_ClearStatusStage(void)
 {
-	uint8_t ErrorCode;
 	if (USB_ControlRequest.bmRequestType & REQDIR_DEVICETOHOST) {
 		while (!(Endpoint_IsOUTReceived())) {
 			if (USB_DeviceState == DEVICE_STATE_Unattached)
@@ -113,7 +112,7 @@ void Endpoint_ClearStatusStage(void)
 				return;
 		}
 		Endpoint_ClearIN();
-		if (ErrorCode = Endpoint_WaitUntilReady()) {
+		if (Endpoint_WaitUntilReady() != 0) {
 			return;
 		}
 	}

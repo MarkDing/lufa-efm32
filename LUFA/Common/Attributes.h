@@ -123,8 +123,8 @@
 				 *  alignment bytes usually added between fields to optimize field accesses.
 				 */
 				#define ATTR_PACKED                      __attribute__ ((packed))
+
 			#else
-				/* For IAR compiler*/
 				#define ATTR_NO_RETURN
 				#define ATTR_WARN_UNUSED_RESULT
 				#define ATTR_NON_NULL_PTR_ARG(...)
@@ -135,8 +135,8 @@
 				#define ATTR_DEPRECATED
 				#define ATTR_CONST
 				#define ATTR_WEAK
-				#define ATTR_PACKED                      __packed
 				#define ATTR_ALIAS(Func)
+				#define ATTR_PACKED 					__attribute__ ((packed))
 			#endif
 
 			/** Forces the compiler to not automatically zero the given global variable on startup, so that the

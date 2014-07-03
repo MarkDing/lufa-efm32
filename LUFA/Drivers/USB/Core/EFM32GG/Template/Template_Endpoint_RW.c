@@ -38,7 +38,7 @@ uint8_t TEMPLATE_FUNC_NAME(TEMPLATE_BUFFER_TYPE const Buffer,
 	uint16_t BytesInTransfer = 0;
 	uint8_t  ErrorCode;
 
-	if ((ErrorCode = Endpoint_WaitUntilReady()))
+	if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 		return ErrorCode;
 
 	if (BytesProcessed != NULL) {
@@ -59,7 +59,7 @@ uint8_t TEMPLATE_FUNC_NAME(TEMPLATE_BUFFER_TYPE const Buffer,
 				return ENDPOINT_RWSTREAM_IncompleteTransfer;
 			}
 
-			if ((ErrorCode = Endpoint_WaitUntilReady()))
+			if ((ErrorCode = Endpoint_WaitUntilReady()) != 0)
 				return ErrorCode;
 		} else {
 			TEMPLATE_TRANSFER_BYTE(DataStream);

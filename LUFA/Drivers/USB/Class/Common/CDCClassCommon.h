@@ -224,6 +224,7 @@
 		};
 
 	/* Type Defines: */
+		EFM32_PACK_START(1)
 		/** \brief CDC class-specific Functional Header Descriptor (LUFA naming conventions).
 		 *
 		 *  Type define for a CDC class-specific functional header descriptor. This indicates to the host that the device
@@ -379,7 +380,7 @@
 								  */
 			uint8_t  DataBits; /**< Bits of data per character of the virtual serial port. */
 		} ATTR_PACKED CDC_LineEncoding_t;
-
+		EFM32_PACK_END()
 	/* Disable C linkage for C++ Compilers: */
 		#if defined(__cplusplus)
 			}
