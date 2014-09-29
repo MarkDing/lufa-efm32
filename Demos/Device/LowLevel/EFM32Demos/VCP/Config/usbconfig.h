@@ -2,7 +2,7 @@
  * @file usbconfig.h
  * @brief USB protocol stack library, application supplied configuration options.
  * @author Silicon Labs
- * @version 1.02
+ * @version 1.00
  *******************************************************************************
  * section License
  * <b>(C) Copyright 2014 Silicon Labs, http://www.silabs.com</b>

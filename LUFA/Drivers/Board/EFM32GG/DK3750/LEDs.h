@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014  Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -116,11 +116,6 @@ static inline void LEDs_TurnOffLEDs(const uint8_t LEDMask)
 static inline void LEDs_SetAllLEDs(const uint8_t LEDMask)
 {
 	BSP_RegisterWrite(BSP_LED_PORT, LEDMask & LEDS_ALL_LEDS);
-}
-
-static inline void LEDs_ChangeLEDs(const uint8_t LEDMask, const uint8_t ActiveMask)
-{
-	// TODO: Add code to set the Leds in the given LEDMask to the status given in ActiveMask here
 }
 
 static inline void LEDs_ToggleLEDs(const uint8_t LEDMask)

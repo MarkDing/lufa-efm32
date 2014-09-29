@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014  Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -194,8 +194,10 @@ void SetupHardware(void)
 	/* Hardware Initialization */
 	setupSWOForPrint();
 
-	/* Enable clock to GPIO, USART1*/
-	CMU->HFPERCLKEN0 |= (CMU_HFPERCLKEN0_USART1 | CMU_HFPERCLKEN0_GPIO | CMU_HFPERCLKEN0_UART1);
+	/* Enable clock to GPIO, USART1, UART1*/
+	CMU_ClockEnable(cmuClock_GPIO, true);
+	CMU_ClockEnable(cmuClock_USART1, true);
+	CMU_ClockEnable(cmuClock_UART1, true);
 
 	SystemCoreClockGet();
 	SysTick_Config(SystemCoreClockGet() / SYSTICKHZ);
@@ -286,16 +288,6 @@ bool EVENT_USB_Device_ControlRequest(void)
 		if (USB_ControlRequest.bmRequestType == (REQDIR_HOSTTODEVICE | REQTYPE_CLASS | REQREC_INTERFACE)) {
 			Endpoint_ClearSETUP();
 			Endpoint_ClearStatusStage();
-
-			// EVENT_USB_Device_SetControlLineState();
-			// Endpoint_SelectEndpoint(CDC_NOTIFICATION_EPADDR);
-			// Endpoint_Write_Stream_LE(&notifications, sizeof(notifications), NULL);
-			// Endpoint_ClearIN();
-			// while(!Endpoint_IsINReady());
-			/* NOTE: Here you can read in the line state mask from the host, to get the current state of the output handshake
-			         lines. The mask is read in from the wValue parameter in USB_ControlRequest, and can be masked against the
-					 CONTROL_LINE_OUT_* masks to determine the RTS and DTR line states using the following code:
-			*/
 			ret = true;
 		}
 		break;

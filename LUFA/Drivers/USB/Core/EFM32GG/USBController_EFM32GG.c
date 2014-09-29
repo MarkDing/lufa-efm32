@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014 Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -35,7 +35,7 @@
 #define  __INCLUDE_FROM_USB_CONTROLLER_C
 #include "../USBController.h"
 
-
+#define MAX_FIFO_SIZE 512U
 static USBD_Device_TypeDef device;
 USBD_Device_TypeDef *dev = &device;
 
@@ -139,7 +139,7 @@ static void USB_Fifo_Init(uint8_t *endpoint_desc)
 		}
 	}
 
-	if (totalRxFifoSize + totalTxFifoSize > MAX_FIFO_SIZE_INWORDS)
+	if (totalRxFifoSize + totalTxFifoSize > MAX_FIFO_SIZE)
 		return;
 
 	/* Flush the FIFO's */
@@ -161,7 +161,6 @@ void USB_Init(uint8_t *endpoint_desc)
 	ep = &dev->ep[0];
 
 	CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-	CMU_OscillatorEnable(cmuOsc_LFXO, true, false);
 
 	/* Enable USB clock */
 	CMU->HFCORECLKEN0 |= CMU_HFCORECLKEN0_USB | CMU_HFCORECLKEN0_USBC;
@@ -212,10 +211,6 @@ static void USB_Init_Device(void)
 	CMU_ClockEnable(cmuClock_GPIO, true);
 	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 0);    // Enable VBUSEN pin
 
-	// USB_Controller_Enable();  /* Init PHY          */
-
-	// USB_Controller_Reset();   /* Reset USB core    */
-
 	/* Force Device Mode */
 	USB->GUSBCFG = (USB->GUSBCFG                                    &
 	                ~(GUSBCFG_WO_BITMASK | USB_GUSBCFG_FORCEHSTMODE)) |
@@ -251,7 +246,6 @@ static void USB_Init_Device(void)
 	Endpoint_ConfigureEndpoint(ENDPOINT_CONTROLEP, EP_TYPE_CONTROL,
 	                           USB_Device_ControlEndpointSize, 1);
 
-	// USB_INT_Clear(USB_GINT_USBSUSP);
 	USB_INT_Enable(USB_GINT_USBSUSP);
 	USB_INT_Enable(USB_GINT_SOF);
 	USB_Attach();

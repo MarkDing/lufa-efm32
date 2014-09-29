@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014  Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -53,7 +53,8 @@ UBUF(receiveBuffer, BUFFERSIZE);
 bool Endpoint_ConfigureEndpointTable(const USB_Endpoint_Table_t *const Table,
                                      const uint8_t Entries)
 {
-	for (uint8_t i = 0; i < Entries; i++) {
+	int i;
+	for ( i = 0; i < Entries; i++) {
 		if (!(Table[i].Address))
 			continue;
 
@@ -72,6 +73,9 @@ bool Endpoint_ConfigureEndpoint(const uint8_t Address,
 {
 	uint8_t num = (Address & ENDPOINT_EPNUM_MASK);
 	USBD_Ep_TypeDef *ep;
+	(void)Type;
+	(void)Size;
+	(void)Banks;
 
 	if (num >= ENDPOINT_TOTAL_ENDPOINTS)
 		return false;
@@ -92,7 +96,8 @@ bool Endpoint_ConfigureEndpoint(const uint8_t Address,
 
 void Endpoint_ClearEndpoints(void)
 {
-	for (uint8_t EPNum = 0; EPNum < ENDPOINT_TOTAL_ENDPOINTS; EPNum++) {
+	uint8_t EPNum;
+	for ( EPNum = 0; EPNum < ENDPOINT_TOTAL_ENDPOINTS; EPNum++) {
 		Endpoint_SelectEndpoint(EPNum);
 		Endpoint_DisableEndpoint();
 	}

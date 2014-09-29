@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014  Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -134,29 +134,14 @@ static void Handle_USB_GINTSTS_IEPINT(void)
 	int epnum;
 	uint16_t epint;
 	uint16_t epmask;
-//	uint32_t status;
 	USBD_Ep_TypeDef *ep;
 
 
 	epint = USBDHAL_GetAllInEpInts();
-	for (epnum = 0, epmask = 1; epnum <= MAX_NUM_IN_EPS; epnum++, epmask <<= 1) {
+	for (epnum = 0, epmask = 1; epnum <= NUM_EP_USED; epnum++, epmask <<= 1) {
 		if (epint & epmask) {
 			ep = &dev->ep[epnum];
 			USBDHAL_GetInEpInts(ep);
-//			status = USBDHAL_GetInEpInts(ep);
-			// if (status & USB_DIEP_INT_XFERCOMPL) {
-			// 	USB_DINEPS[epnum].INT = USB_DIEP_INT_XFERCOMPL;
-			// 	if (epnum == 0) {
-			// 		if (ep->remaining > ep->packetSize) {
-			// 			ep->remaining -= ep->packetSize;
-			// 			ep->xferred += ep->packetSize;
-			// 		} else {
-			// 			ep->xferred += ep->remaining;
-			// 			ep->remaining = 0;
-			// 		}
-			// 	} else {
-			// 	}
-			// }
 		}
 	}
 }
@@ -173,7 +158,7 @@ static void Handle_USB_GINTSTS_OEPINT(void)
 	USBD_Ep_TypeDef *ep;
 
 	epint = USBDHAL_GetAllOutEpInts();
-	for (epnum = 0, epmask = 1; epnum <= MAX_NUM_OUT_EPS; epnum++, epmask <<= 1) {
+	for (epnum = 0, epmask = 1; epnum <= NUM_EP_USED; epnum++, epmask <<= 1) {
 		if (epint & epmask) {
 			ep = USBD_GetEpFromAddr(epnum);
 			status = USBDHAL_GetOutEpInts(ep);

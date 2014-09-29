@@ -380,6 +380,7 @@
 				#elif (ARCH == ARCH_XMEGA)
 				SREG = GlobalIntState;
 				#elif (ARCH == ARCH_EFM32GG)
+				(void)GlobalIntState;
 				//__set_PRIMASK(GlobalIntState);
 				#endif
 

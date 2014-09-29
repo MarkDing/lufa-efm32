@@ -7,7 +7,7 @@
 */
 
 /*
-  Copyright 2014  Silicon Labs, http://www.silabs.com
+  Copyright 2014  Dean Camera (dean [at] fourwalledcubicle [dot] com)
 
   Permission to use, copy, modify, distribute, and sell this
   software and its documentation for any purpose is hereby granted
@@ -210,6 +210,7 @@ static inline void USB_Device_SetDeviceAddress(const uint8_t Address)
 static inline void USB_Device_EnableDeviceAddress(const uint8_t Address) ATTR_ALWAYS_INLINE;
 static inline void USB_Device_EnableDeviceAddress(const uint8_t Address)
 {
+	(void)Address;
 }
 
 static inline bool USB_Device_IsAddressSet(void) ATTR_ALWAYS_INLINE ATTR_WARN_UNUSED_RESULT;

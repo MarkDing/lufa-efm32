@@ -2,10 +2,10 @@
  * @file retarget.c
  * @brief Sample firmware for use with EFM32 Demo Programmer
  * @author Silicon Labs
- * @version 1.02
- ******************************************************************************
- * section License
- * <b>(C) Copyright 2013 Energy Micro AS, http://www.energymicro.com</b>
+ * @version 1.00
+ *******************************************************************************
+ * @section License
+ * <b>(C) Copyright 2014 Silicon Labs, http://www.silabs.com</b>
  *******************************************************************************
  *
  * Permission is granted to anyone to use this software for any purpose,
@@ -17,21 +17,19 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  *    misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
- * 4. The source and compiled code may only be used on Energy Micro "EFM32"
- *    microcontrollers and "EFR4" radios.
  *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Energy Micro AS has no
- * obligation to support this Software. Energy Micro AS is providing the
+ * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Silicon Labs has no
+ * obligation to support this Software. Silicon Labs is providing the
  * Software "AS IS", with no express or implied warranties of any kind,
  * including, but not limited to, any implied warranties of merchantability
  * or fitness for any particular purpose or warranties against infringement
  * of any proprietary rights of a third party.
  *
- * Energy Micro AS will not be liable for any consequential, incidental, or
+ * Silicon Labs will not be liable for any consequential, incidental, or
  * special damages, or any other relief, or for any claim by any third party,
  * arising from your use of this Software.
  *
- *****************************************************************************/
+ ******************************************************************************/
 #include "em_device.h"
 #include "em_gpio.h"
 
@@ -99,28 +97,6 @@ void setupSWOForPrint(void)
 	TPI->FFCR = 0x00000100;
 	ITM->TER  = 0x1;
 }
-
-/***************************************************************************//**
- * @file
- * @brief Provide stdio retargeting for all supported toolchains.
- * @author Energy Micro AS
- * @version 3.20.2
- *******************************************************************************
- * section License
- * <b>(C) Copyright 2014 Silicon Labs, http://www.silabs.com</b>
- *******************************************************************************
- *
- * This file is licensed under the Silicon Labs Software License Agreement. See
- * "http://developer.silabs.com/legal/version/v11/Silicon_Labs_Software_License_Agreement.txt"
- * for details. Before using this software for any purpose, you must agree to the
- * terms of that agreement.
- *
- ******************************************************************************/
-
-
-
-
-
 
 
 /***************************************************************************//**
@@ -361,30 +337,6 @@ int _write(int file, const char *ptr, int len)
 #endif /* !defined( __CROSSWORKS_ARM ) && defined( __GNUC__ ) */
 
 #if defined(__ICCARM__)
-/*******************
- *
- * Copyright 1998-2003 IAR Systems.  All rights reserved.
- *
- * $Revision: 38614 $
- *
- * This is a template implementation of the "__write" function used by
- * the standard library.  Replace it with a system-specific
- * implementation.
- *
- * The "__write" function should output "size" number of bytes from
- * "buffer" in some application-specific way.  It should return the
- * number of characters written, or _LLIO_ERROR on failure.
- *
- * If "buffer" is zero then __write should perform flushing of
- * internal buffers, if any.  In this case "handle" can be -1 to
- * indicate that all handles should be flushed.
- *
- * The template implementation below assumes that the application
- * provides the function "MyLowLevelPutchar".  It should return the
- * character written, or -1 on failure.
- *
- ********************/
-
 #include <yfuns.h>
 #include <stdint.h>
 
@@ -485,15 +437,6 @@ int __getchar(void)
 #endif /* defined( __CROSSWORKS_ARM ) */
 
 #if defined(__CC_ARM)
-/******************************************************************************/
-/* RETARGET.C: 'Retarget' layer for target-dependent low level functions      */
-/******************************************************************************/
-/* This file is part of the uVision/ARM development tools.                    */
-/* Copyright (c) 2005-2006 Keil Software. All rights reserved.                */
-/* This software may only be used under the terms of a valid, current,        */
-/* end user licence from KEIL for a compatible version of KEIL software       */
-/* development tools. Nothing else gives you the right to use this software.  */
-/******************************************************************************/
 
 #include <stdio.h>
 

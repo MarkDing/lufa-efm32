@@ -157,13 +157,18 @@ __Figure 2. USB CDC Communication FLow__
 The USB CDC firmware example is based on the `LUFA` open-source project. `LUFA` is an open-source complete USB stack released under the permissive MIT License. It includes support for many USB classes, both for USB Hosts and USB Devices. For USB Devices, the `LUFA` stack includes support for Audio Class, CDC Class, HID Class, Mass Storage Class, MIDI Class, and RNDIS Class.
 More information about the `LUFA` project can be found on the official website: http://www.fourwalledcubicle.com/LUFA.php
 
-* The USB CDC project contains a prebuilt LUFA USB stack documentation which locate at .\LUFA\Documentation\html. Double click on the index.html, the documentations shows in your default browser.
+The USB CDC project contains a prebuilt LUFA USB stack documentation which locate at .\LUFA\Documentation\html. Double click on the index.html, the documentations shows in your default browser.
 
 ![LUFA documentation][LUFA_DOC]
 
 __Figure 3. USB LUFA Libary Documentation__
 
-* This implementation support two boards of EFM32, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. 
+## 5. EFM32 Software Examples
+The software example included with this application note contains drivers and full LUFA USB stack for EFM32. USB CDC Demo is implemented in this software example. It supports two boards of EFM32, EFM32GG-STK3700 and EFM32GG-DK3750.
+
+* The  Communications  Device  Class(CDC)  demonstration  application  gives  a  reference  for implementing a CDC device acting as a Virtual COM Port(VCP). Source code is located at .\Demos\Device\LowLevel\EFM32Demos\VCP.  The  LUFA  VirtualSerial.inf file  located  at  this directory too. You need to supply the .INF file when running under Windows for the first time. This will enable Windows to use its inbuilt CDC drivers. 
+
+* This implementation supports two boards of EFM32, EFM32GG-STK3700 and EFM32GG-DK3750. Default setting is EFM32GG-DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h.
 
 ``` c
 #if !defined(__DOXYGEN__)
@@ -174,14 +179,18 @@ __Figure 3. USB LUFA Libary Documentation__
 #endif
 ```
 
-For STK3700 board, there is no UART socket on board. UART signals are connected to EXP Header. 
+* Running on EFM32GG-DK3750 board, a BSP initialize function (BSP_Init(BSP_INIT_DEFAULT)) is called in VirtualSerial.c. This is enabled by macro BOARD_DK3750. 
+
+* Each board has its own board specific driver code located at .\LUFA\Drivers\Board\EFM32GG. There  are  two  directories,  DK3750 and  STK3700.  It  contains  Button,  LED  and  USART  initialize functions in each directory. In DK3750\Serial.h, it calls BSP functions to activate the RS232 port on the DK.
+
+* For EFM32GG-STK3700 board, there is no UART socket on board. USART signals are connected to EXP Header. Connect those signals to other UART bridge devices, and we can get access it from PC host.
 
 ![USART on EXP][USART_ON_EXP]
 
 __Figure 4. USART signals on STK3700 Expansion Header__
 
-## 5. USB CDC Driver
-The CDC class is implemented in all releases of Windows, and the operatingsystem needs an INF file for the CDC driver. This INF file contains the Vendor ID and Product ID. If the VID/PID of the USB devices matches the INF file, Windows will load the driver described in the file. The __VirtualSerial.inf__ file can be found in the __.\Demos\Device\LowLevel\EFM32Demos\VCP__ directory. 
+## 6. USB CDC Driver
+The CDC class is implemented in all releases of Windows, and the operating system needs an INF file for the CDC driver. This INF file contains the Vendor ID and Product ID. If the VID/PID of the USB devices matches the INF file, Windows will load the driver described in the file. The __VirtualSerial.inf__ file can be found in the __.\Demos\Device\LowLevel\EFM32Demos\VCP__ directory. 
 
 ### Installing the Driver
 To install the driver on Windows 7:
@@ -194,7 +203,7 @@ To install the driver on Windows 7:
 ![Device Manager Update][Device_Manager_Update]
 5. Select __Browse my computer for driver software__.
 ![Updata Driver Software][Updata_Driver_Software]
-6. Select __Browse my computer for driver software__.
+6. Enter  the  directory  path  of  the  LUFA  __VirtualSerial.inf__ file  (__.\Demos\Device\LowLevel\EFM32Demos\VCP__).  If  the  Include  subfolders option  is  checked,  entering  the  main an0861_efm32_lufa_usb_cdcdirectory in the workspace is sufficient.
 ![Browse Driver Software][Browse_Driver_Software]
 7. Windows will display a warning. Select __Install this driversoftware anyway__.
 ![Windows Sercurity][Windows_Sercurity]
