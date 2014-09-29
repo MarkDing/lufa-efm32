@@ -1,0 +1,2 @@
+all:
+include ./VCP/makefile
