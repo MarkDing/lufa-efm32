@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Lufa-efm32 : LUFA port to Silabs EFM32 platform" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Lufa-efm32 : LUFA port to Silabs EFM32 platform">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -39,7 +39,7 @@
 
 <p>USB revolutionized the PC peripheral space by making a very simple plug-and-play interface for users. As a result, many modern computers no longer support RS-232 serial COM ports, opting for the slimmer USB alternative. This can be an issue for the developer who needs a COM port for communication between a peripheral and host PC. A subset of the USB Communication DeviceClass (CDC) can be used to emulate a serial port providing a virtual COM port UART interface. This allows developers to use legacy applications with new products using the same COM port interface as before, with few hardware and software modifications.</p>
 
-<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png" alt="USB CDC Intro" title="USB CDC Virtual COM Port system"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png" alt="USB CDC Intro" title="USB CDC Virtual COM Port system"></p>
 
 <p><strong>Figure 1 USB CDC Virtual COM Port System</strong></p>
 
@@ -394,7 +394,7 @@ communication status reporting. A state is considered enabled if its respective 
 </tbody>
 </table><p>Figure 2 shows a standard CDC communication flow.</p>
 
-<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png" alt="CDC USB LOG" title="CDC USB log"></p>
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png" alt="CDC USB LOG" title="CDC USB log"></p>
 
 <p><strong>Figure 2. USB CDC Communication FLow</strong></p>
 
@@ -404,14 +404,20 @@ communication status reporting. A state is considered enabled if its respective 
 <p>The USB CDC firmware example is based on the <code>LUFA</code> open-source project. <code>LUFA</code> is an open-source complete USB stack released under the permissive MIT License. It includes support for many USB classes, both for USB Hosts and USB Devices. For USB Devices, the <code>LUFA</code> stack includes support for Audio Class, CDC Class, HID Class, Mass Storage Class, MIDI Class, and RNDIS Class.
 More information about the <code>LUFA</code> project can be found on the official website: <a href="http://www.fourwalledcubicle.com/LUFA.php">http://www.fourwalledcubicle.com/LUFA.php</a></p>
 
-<ul>
-<li>The USB CDC project contains a prebuilt LUFA USB stack documentation which locate at .\LUFA\Documentation\html. Double click on the index.html, the documentations shows in your default browser.</li>
-</ul><p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png" alt="LUFA documentation" title="LUFA USB documentation"></p>
+<p>The USB CDC project contains a prebuilt LUFA USB stack documentation which locate at .\LUFA\Documentation\html. Double click on the index.html, the documentations shows in your default browser.</p>
+
+<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png" alt="LUFA documentation" title="LUFA USB documentation"></p>
 
 <p><strong>Figure 3. USB LUFA Libary Documentation</strong></p>
 
+<h2>
+<a name="5-efm32-software-examples" class="anchor" href="#5-efm32-software-examples"><span class="octicon octicon-link"></span></a>5. EFM32 Software Examples</h2>
+
+<p>The software example included with this application note contains drivers and full LUFA USB stack for EFM32. USB CDC Demo is implemented in this software example. It supports two boards of EFM32, EFM32GG-STK3700 and EFM32GG-DK3750.</p>
+
 <ul>
-<li>This implementation support two boards of EFM32, STK3700 and DK3750. Default setting is DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h. </li>
+<li><p>The  Communications  Device  Class(CDC)  demonstration  application  gives  a  reference  for implementing a CDC device acting as a Virtual COM Port(VCP). Source code is located at .\Demos\Device\LowLevel\EFM32Demos\VCP.  The  LUFA  VirtualSerial.inf file  located  at  this directory too. You need to supply the .INF file when running under Windows for the first time. This will enable Windows to use its inbuilt CDC drivers. </p></li>
+<li><p>This implementation supports two boards of EFM32, EFM32GG-STK3700 and EFM32GG-DK3750. Default setting is EFM32GG-DK3750, To change board selection, just modify macro definition in .\LUFA\Common\BoardTypes.h.</p></li>
 </ul><div class="highlight highlight-c"><pre><span class="cp">#if !defined(__DOXYGEN__)</span>
 <span class="cp">    #define BOARD_                 BOARD_DK3750</span>
 <span class="cp">    #if !defined(BOARD)</span>
@@ -420,16 +426,18 @@ More information about the <code>LUFA</code> project can be found on the officia
 <span class="cp">#endif</span>
 </pre></div>
 
-<p>For STK3700 board, there is no UART socket on board. UART signals are connected to EXP Header. </p>
-
-<p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png" alt="USART on EXP" title="USART signals on STK3700 Expansion Header"></p>
+<ul>
+<li><p>Running on EFM32GG-DK3750 board, a BSP initialize function (BSP_Init(BSP_INIT_DEFAULT)) is called in VirtualSerial.c. This is enabled by macro BOARD_DK3750. </p></li>
+<li><p>Each board has its own board specific driver code located at .\LUFA\Drivers\Board\EFM32GG. There  are  two  directories,  DK3750 and  STK3700.  It  contains  Button,  LED  and  USART  initialize functions in each directory. In DK3750\Serial.h, it calls BSP functions to activate the RS232 port on the DK.</p></li>
+<li><p>For EFM32GG-STK3700 board, there is no UART socket on board. USART signals are connected to EXP Header. Connect those signals to other UART bridge devices, and we can get access it from PC host.</p></li>
+</ul><p><img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png" alt="USART on EXP" title="USART signals on STK3700 Expansion Header"></p>
 
 <p><strong>Figure 4. USART signals on STK3700 Expansion Header</strong></p>
 
 <h2>
-<a name="5-usb-cdc-driver" class="anchor" href="#5-usb-cdc-driver"><span class="octicon octicon-link"></span></a>5. USB CDC Driver</h2>
+<a name="6-usb-cdc-driver" class="anchor" href="#6-usb-cdc-driver"><span class="octicon octicon-link"></span></a>6. USB CDC Driver</h2>
 
-<p>The CDC class is implemented in all releases of Windows, and the operatingsystem needs an INF file for the CDC driver. This INF file contains the Vendor ID and Product ID. If the VID/PID of the USB devices matches the INF file, Windows will load the driver described in the file. The <strong>VirtualSerial.inf</strong> file can be found in the <strong>.\Demos\Device\LowLevel\EFM32Demos\VCP</strong> directory. </p>
+<p>The CDC class is implemented in all releases of Windows, and the operating system needs an INF file for the CDC driver. This INF file contains the Vendor ID and Product ID. If the VID/PID of the USB devices matches the INF file, Windows will load the driver described in the file. The <strong>VirtualSerial.inf</strong> file can be found in the <strong>.\Demos\Device\LowLevel\EFM32Demos\VCP</strong> directory. </p>
 
 <h3>
 <a name="installing-the-driver" class="anchor" href="#installing-the-driver"><span class="octicon octicon-link"></span></a>Installing the Driver</h3>
@@ -440,23 +448,23 @@ More information about the <code>LUFA</code> project can be found on the officia
 <li>Build the project and download firmware to the EFM32 DK3750 board.</li>
 <li>Connect the USB cable between the Device MCU plugin board USB connector  and the PC.</li>
 <li>Open Device Manager. The device will appear under <strong>Other devices</strong> as the <strong>EFM32 CDC Device</strong>.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png" alt="Device Manager">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png" alt="Device Manager">
 </li>
 <li>Right-click on the <strong>EFM32 CDC Device</strong> and select <strong>Update Driver Software</strong>.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png" alt="Device Manager Update">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png" alt="Device Manager Update">
 </li>
 <li>Select <strong>Browse my computer for driver software</strong>.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/update_driver_software.png" alt="Updata Driver Software">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/update_driver_software.png" alt="Updata Driver Software">
 </li>
-<li>Select <strong>Browse my computer for driver software</strong>.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/browse_driver_software.png" alt="Browse Driver Software">
+<li>Enter  the  directory  path  of  the  LUFA  <strong>VirtualSerial.inf</strong> file  (<strong>.\Demos\Device\LowLevel\EFM32Demos\VCP</strong>).  If  the  Include  subfolders option  is  checked,  entering  the  main an0861_efm32_lufa_usb_cdcdirectory in the workspace is sufficient.
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/browse_driver_software.png" alt="Browse Driver Software">
 </li>
 <li>Windows will display a warning. Select <strong>Install this driversoftware anyway</strong>.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/windows_security.png" alt="Windows Sercurity">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/windows_security.png" alt="Windows Sercurity">
 </li>
 <li>When the driver finishes installing,Windows will report the installation results.</li>
 <li>Open Device Manager and observethe device. It will now appear under <strong>Ports (COM &amp; LPT)</strong> with an assigned COM port number.
-<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_done.png" alt="Device Manager Done">
+<img src="https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager_done.png" alt="Device Manager Done">
 </li>
 </ol><h2>
 <a name="contact-information" class="anchor" href="#contact-information"><span class="octicon octicon-link"></span></a>CONTACT INFORMATION</h2>
