@@ -226,13 +226,13 @@ and register to submit a technical support request.<br>
 
 
 
-[USB_CDC_Intro]:https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png "USB CDC Virtual COM Port system"
-[CDC_USB_LOG]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png "CDC USB log"
-[LUFA_DOC]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png "LUFA USB documentation"
-[USART_ON_EXP]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png "USART signals on STK3700 Expansion Header"
-[Device_Manager]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png
-[Device_Manager_Update]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png
-[Updata_Driver_Software]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/update_driver_software.png
-[Browse_Driver_Software]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/browse_driver_software.png
-[Windows_Sercurity]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/windows_security.png
-[Device_Manager_Done]: https://raw.github.com/MarkDing/lufa-efm32/efm32/Demos/Device/LowLevel/EFM32Demos/images/device_manager_done.png
+[USB_CDC_Intro]:https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/usb_cdc_intro.png "USB CDC Virtual COM Port system"
+[CDC_USB_LOG]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/CDC_com_flow.png "CDC USB log"
+[LUFA_DOC]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/lufa-documentation.png "LUFA USB documentation"
+[USART_ON_EXP]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/usart_signals_on_EXP_header.png "USART signals on STK3700 Expansion Header"
+[Device_Manager]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager.png
+[Device_Manager_Update]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager_update.png
+[Updata_Driver_Software]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/update_driver_software.png
+[Browse_Driver_Software]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/browse_driver_software.png
+[Windows_Sercurity]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/windows_security.png
+[Device_Manager_Done]: https://raw.github.com/MarkDing/lufa-efm32/efm32/src/Demos/Device/LowLevel/EFM32Demos/images/device_manager_done.png
